@@ -1,0 +1,20 @@
+version: "3"
+services:
+    pyspark:
+      build:
+        context: .
+      container_name: pyspark
+      ports:
+        - "8888:8888"
+      environment:
+        - MYSQL_DB_USERNAME=root
+        - MYSQL_DB_PASSWORD=password
+      volumes:
+        - .:/home/jovyan
+      networks:
+        - default
+        - mysql
+networks:
+  mysql:
+    external:
+      name: mysql_default
